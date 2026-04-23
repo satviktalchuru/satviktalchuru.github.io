@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satvik Talchuru</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eee;
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .brand { font-weight: 600; font-size: 1rem; text-decoration: none; color: #1a1a1a; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { text-decoration: none; color: #555; font-size: 0.9rem; }
+    nav ul a:hover { color: #1a1a1a; }
+
+    /* ── Layout ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Hero ── */
+    #hero { padding: 72px 0 56px; }
+    .hero-inner { display: flex; align-items: center; gap: 48px; }
+    .hero-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 18px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .hero-photo-placeholder {
+      width: 220px;
+      height: 220px;
+      border-radius: 18px;
+      background: #e5e5e5;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.85rem;
+    }
+    .hero-text h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; }
+    .hero-text .subtitle { color: #555; font-size: 1rem; margin-bottom: 20px; }
+    .hero-icons { display: flex; gap: 16px; margin-bottom: 20px; align-items: center; }
+    .hero-icons a { color: #1a1a1a; text-decoration: none; display: flex; align-items: center; }
+    .hero-icons svg { width: 22px; height: 22px; }
+    .btn-cv {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .btn-cv:hover { background: #1d4ed8; }
+
+    /* ── Sections ── */
+    section { padding: 48px 0; }
+    section + section { border-top: 1px solid #f0f0f0; }
+    h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 28px; }
+
+    /* ── Education card ── */
+    .edu-list { display: flex; flex-direction: column; gap: 16px; }
+    .edu-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .edu-card .school { font-weight: 600; font-size: 1rem; }
+    .edu-card .degree { color: #555; font-size: 0.9rem; margin-top: 2px; }
+    .edu-card .coursework { color: #777; font-size: 0.82rem; margin-top: 6px; }
+    .edu-card .date { color: #888; font-size: 0.85rem; white-space: nowrap; margin-left: 16px; flex-shrink: 0; }
+
+    /* ── Experience cards ── */
+    .exp-list { display: flex; flex-direction: column; gap: 16px; }
+    .exp-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .exp-card .role { font-weight: 600; font-size: 1rem; }
+    .exp-card .company { color: #555; font-size: 0.9rem; margin-top: 2px; }
+    .exp-card .location { color: #888; font-size: 0.82rem; margin-top: 2px; }
+    .exp-card .date { color: #888; font-size: 0.85rem; white-space: nowrap; margin-left: 16px; flex-shrink: 0; }
+
+    /* ── Skills ── */
+    .skills-grid { display: flex; flex-direction: column; gap: 10px; }
+    .skill-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .skill-label { font-weight: 600; font-size: 0.85rem; min-width: 100px; color: #444; }
+    .skill-tag {
+      background: #f0f4ff;
+      color: #2563eb;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* ── Blog ── */
+    .blog-placeholder {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    .blog-placeholder span { display: block; font-size: 1.5rem; margin-bottom: 8px; }
+
+    /* ── Extracurriculars ── */
+    .extra-list { display: flex; flex-direction: column; gap: 16px; }
+    .extra-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .extra-card .role { font-weight: 600; font-size: 1rem; }
+    .extra-card .org { color: #555; font-size: 0.9rem; margin-top: 2px; }
+
+    /* ── Projects ── */
+    .project-list { display: flex; flex-direction: column; gap: 32px; }
+    .project-item { background: #f7f7f7; border-radius: 12px; padding: 24px; }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .project-item h3 { font-size: 1rem; font-weight: 600; }
+    .project-date { color: #888; font-size: 0.85rem; white-space: nowrap; margin-left: 16px; flex-shrink: 0; }
+    .project-stack { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .stack-tag {
+      background: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .project-item ul { padding-left: 20px; color: #444; font-size: 0.9rem; }
+    .project-item ul li { margin-bottom: 4px; }
+
+    /* ── Footer ── */
+    footer { padding: 24px 0; text-align: center; color: #999; font-size: 0.85rem; border-top: 1px solid #eee; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero-inner { flex-direction: column; gap: 24px; }
+      .hero-photo, .hero-photo-placeholder { width: 160px; height: 160px; }
+      .edu-card, .exp-card, .extra-card { flex-direction: column; gap: 8px; }
+      .project-header { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="brand" href="#">Satvik Talchuru</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#extracurriculars">Extracurriculars</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-photo-placeholder">Photo</div>
+        <div class="hero-text">
+          <h1>Satvik Talchuru</h1>
+          <p class="subtitle">B.S. Statistics &amp; Data Science, B.A. Economics · UC Santa Barbara</p>
+          <div class="hero-icons">
+            <!-- Email -->
+            <a href="mailto:satvik.talchuru@gmail.com" title="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/satvikt4" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/satviktalchuru" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+          </div>
+          <a class="btn-cv" href="#">Download Resume</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am Satvik Talchuru, a third-year undergraduate at <strong>UC Santa Barbara</strong> pursuing a
+        <strong>B.S. in Statistics and Data Science</strong> and a <strong>B.A. in Economics</strong> (expected June 2027).
+        I am passionate about building data-driven systems at the intersection of cloud infrastructure, machine learning,
+        and AI — from architecting scalable AWS pipelines to designing agentic AI workflows. Outside of work, I lead
+        student organizations focused on sports analytics and data science on campus.
+      </p>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="edu-list">
+        <div class="edu-card">
+          <div>
+            <div class="school">University of California, Santa Barbara</div>
+            <div class="degree">B.S. in Statistics and Data Science &amp; B.A. in Economics (GPA: 3.60/4.0)</div>
+            <div class="coursework">Regression Analysis · Statistical Machine Learning · Stochastic Processes · Bayesian Data Analysis · Econometrics · Survival Analysis</div>
+          </div>
+          <div class="date">Expected June 2027</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2>Work Experience</h2>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div>
+            <div class="role">AI Solutions Engineer Intern</div>
+            <div class="company">Siemens</div>
+            <div class="location">Remote</div>
+          </div>
+          <div class="date">Jun 2025 – Present</div>
+        </div>
+        <div class="exp-card">
+          <div>
+            <div class="role">Cloud Solutions Architect Intern</div>
+            <div class="company">UCSB Information Technology</div>
+            <div class="location">Goleta, CA</div>
+          </div>
+          <div class="date">Mar 2025 – Present</div>
+        </div>
+        <div class="exp-card">
+          <div>
+            <div class="role">ServiceNow Developer</div>
+            <div class="company">UCSB Information Technology</div>
+            <div class="location">Goleta, CA</div>
+          </div>
+          <div class="date">Aug 2024 – Jun 2025</div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div style="margin-top: 36px;">
+        <h3 style="font-size:1.1rem; font-weight:600; margin-bottom:16px;">Technical Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-row">
+            <span class="skill-label">Languages</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Java</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Frameworks</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">Scikit-Learn</span>
+            <span class="skill-tag">Apache Spark</span>
+            <span class="skill-tag">Airflow</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">LangChain</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Cloud &amp; Tools</span>
+            <span class="skill-tag">AWS (EC2, S3, Lambda, EKS, RDS)</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Certifications</span>
+            <span class="skill-tag">AWS Certified Solutions Architect – Associate (2025)</span>
+            <span class="skill-tag">ML Specialization · DeepLearning.AI (2024)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-list">
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Inventory Optimization &amp; Time-Series Forecasting</h3>
+            <span class="project-date">Jul 2025</span>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">SQL</span>
+            <span class="stack-tag">AWS</span>
+            <span class="stack-tag">Scikit-Learn</span>
+            <span class="stack-tag">NumPy</span>
+            <span class="stack-tag">Tableau</span>
+          </div>
+          <ul>
+            <li>Developed a time-series forecasting pipeline on SKU retail data, training tree-based models to predict demand</li>
+            <li>Converted forecasts into SKU restock thresholds and built Tableau dashboards for daily order lists and low-stock alerts</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <h3>User Identity Risk Scoring &amp; Anomaly Detection</h3>
+            <span class="project-date">Aug 2024</span>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">SQL</span>
+            <span class="stack-tag">TensorFlow</span>
+            <span class="stack-tag">Scikit-Learn</span>
+          </div>
+          <ul>
+            <li>Simulated and analyzed 100k+ IAM login events, training isolation forest, logistic regression, and a TensorFlow autoencoder to flag unusual activity and output a risk score</li>
+            <li>Built SQL feature views using CTEs and window functions, materialized to streamline model scoring and visualization</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <div class="blog-placeholder">
+        <span>✍️</span>
+        Posts coming soon — stay tuned.
+      </div>
+    </section>
+
+    <!-- Extracurriculars -->
+    <section id="extracurriculars">
+      <h2>Extracurriculars</h2>
+      <div class="extra-list">
+        <div class="extra-card">
+          <div>
+            <div class="role">President</div>
+            <div class="org">Gaucho Sports Analytics · UC Santa Barbara</div>
+          </div>
+        </div>
+        <div class="extra-card">
+          <div>
+            <div class="role">Director of Operations</div>
+            <div class="org">Data Science Club · UC Santa Barbara</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Satvik Talchuru</p>
+  </footer>
+
+</body>
+</html>
