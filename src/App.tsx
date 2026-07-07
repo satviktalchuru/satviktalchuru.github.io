@@ -3,11 +3,23 @@ import Header from './components/Header'
 import Section from './components/Section'
 import ExperienceRow from './components/ExperienceRow'
 import ProjectRow from './components/ProjectRow'
+import ThoughtRow from './components/ThoughtRow'
 import MiscRow from './components/MiscRow'
 import Dock from './components/Dock'
 
 export default function App() {
-  const { name, tagline, bio, email, socials, experience, projects, misc } = portfolioData
+  const {
+    name,
+    tagline,
+    bio,
+    email,
+    socials,
+    experience,
+    projects,
+    thoughts,
+    thoughtsPlaceholder,
+    misc,
+  } = portfolioData
 
   return (
     <div className="min-h-screen bg-white">
@@ -24,6 +36,14 @@ export default function App() {
           {projects.map((item) => (
             <ProjectRow key={item.title} item={item} />
           ))}
+        </Section>
+
+        <Section label="Thoughts">
+          {thoughts.length > 0 ? (
+            thoughts.map((item) => <ThoughtRow key={item.title} item={item} />)
+          ) : (
+            <p className="py-3 text-[14px] text-ink-muted">{thoughtsPlaceholder}</p>
+          )}
         </Section>
 
         <Section label="Misc">

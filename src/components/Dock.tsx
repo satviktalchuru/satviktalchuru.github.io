@@ -1,10 +1,10 @@
 import type { Social, SocialPlatform } from '../data/portfolio'
-import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, XIcon } from './icons'
+import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, PhoneIcon } from './icons'
 
 const platformIcons: Record<SocialPlatform, { icon: typeof GitHubIcon; label: string }> = {
   linkedin: { icon: LinkedInIcon, label: 'LinkedIn' },
   github: { icon: GitHubIcon, label: 'GitHub' },
-  x: { icon: XIcon, label: 'X' },
+  phone: { icon: PhoneIcon, label: 'Call' },
 }
 
 interface DockProps {
@@ -19,12 +19,12 @@ export default function Dock({ email, socials }: DockProps) {
         <div className="flex items-center gap-0.5">
           {socials.map((social) => {
             const { icon: Icon, label } = platformIcons[social.platform]
+            const isExternal = social.href.startsWith('http')
             return (
               <a
                 key={social.platform}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 aria-label={label}
                 className="flex h-9 w-9 items-center justify-center rounded-xl text-ink-faint transition-all duration-150 hover:bg-black/[0.04] hover:text-ink"
               >

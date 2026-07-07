@@ -3,7 +3,7 @@
 //  Every section of the page reads from `portfolioData` below.
 // ============================================================================
 
-export type SocialPlatform = 'linkedin' | 'github' | 'x'
+export type SocialPlatform = 'linkedin' | 'github' | 'phone'
 
 export interface Social {
   platform: SocialPlatform
@@ -17,7 +17,7 @@ export interface Badge {
 }
 
 export interface ExperienceItem {
-  /** Single letter or emoji shown in the small rounded square. */
+  /** Image path (e.g. '/logos/workiva.png'), single letter, or emoji. */
   logo: string
   company: string
   role: string
@@ -34,6 +34,12 @@ export interface ProjectItem {
   badge?: Badge
 }
 
+export interface ThoughtItem {
+  title: string
+  date?: string
+  href?: string
+}
+
 export interface MiscItem {
   title: string
   description?: string
@@ -48,75 +54,80 @@ export interface PortfolioData {
   socials: Social[]
   experience: ExperienceItem[]
   projects: ProjectItem[]
+  thoughts: ThoughtItem[]
+  /** Shown under Thoughts when the list above is empty. */
+  thoughtsPlaceholder: string
   misc: MiscItem[]
 }
 
 export const portfolioData: PortfolioData = {
   name: 'Satvik Talchuru',
-  tagline: 'I build AI and cloud systems that ship.',
+  tagline: 'New grad. I build reliable systems.',
   bio: 'Statistics & Data Science + Economics at UC Santa Barbara.',
   email: 'satvik.talchuru@gmail.com',
 
   socials: [
     { platform: 'linkedin', href: 'https://www.linkedin.com/in/satviktalchuru/' },
     { platform: 'github', href: 'https://github.com/satviktalchuru' },
+    { platform: 'phone', href: 'tel:9259185702' },
   ],
 
   experience: [
     {
-      logo: 'S',
-      company: 'Siemens',
-      role: 'AI Solutions Engineer Intern',
-      dates: '2025',
+      logo: '/logos/workiva.png',
+      company: 'Workiva',
+      role: 'Software Engineer Intern, Product SRE',
+      dates: 'Jun 2026 –',
+      badge: { text: 'Current', color: 'green' },
     },
     {
-      logo: 'U',
+      logo: '/logos/ucsb.png',
       company: 'UCSB Information Technology',
       role: 'Cloud Solutions Architect Intern',
-      dates: '2025 – 26',
+      dates: 'Mar 2025 – Mar 2026',
     },
     {
-      logo: 'U',
+      logo: '/logos/siemens.png',
+      company: 'Siemens',
+      role: 'AI Solutions Engineer Intern',
+      dates: 'Jun 2025 – Dec 2025',
+    },
+    {
+      logo: '/logos/ucsb.png',
       company: 'UCSB Information Technology',
       role: 'ServiceNow Developer',
-      dates: '2024 –',
-      badge: { text: 'Current', color: 'green' },
+      dates: 'Aug 2024 –',
     },
   ],
 
   projects: [
     {
-      logo: '🏭',
-      title: 'MES Digital Maturity Assessment',
-      description: 'AI-assisted maturity scoring for manufacturing orgs',
-      href: 'https://github.com/satviktalchuru',
+      logo: '☕',
+      title: 'brew',
+      description: 'Coffee ranking iOS app with ELO-based taste profiles',
+      href: 'https://github.com/satviktalchuru/brew',
     },
     {
-      logo: '📦',
-      title: 'Inventory Demand Forecasting',
-      description: 'Time-series pipeline for SKU restock decisions',
-      href: 'https://github.com/satviktalchuru',
+      logo: '📜',
+      title: 'certflow.ai',
+      description: 'TLS certificate reliability & ownership platform for SRE teams',
+      href: 'https://github.com/satviktalchuru/certflow-ai',
     },
     {
-      logo: '🔐',
-      title: 'IAM Risk Scoring',
-      description: 'Anomaly detection over 100k+ login events',
-      href: 'https://github.com/satviktalchuru',
+      logo: '📊',
+      title: 'maturitykit',
+      description: 'Digital maturity assessments with LLM-generated roadmaps',
+      href: 'https://github.com/satviktalchuru/maturity-kit',
     },
   ],
 
+  thoughts: [],
+  thoughtsPlaceholder: 'More to come.',
+
   misc: [
-    {
-      title: 'AWS Certified Solutions Architect – Associate',
-      description: 'Plus AWS Cloud Practitioner · 2025',
-    },
-    {
-      title: 'President, Gaucho Sports Analytics',
-      description: 'Student-run sports analytics org at UC Santa Barbara',
-    },
-    {
-      title: 'Director of Operations, Data Science Club',
-      description: 'UC Santa Barbara',
-    },
+    { title: 'Reading' },
+    { title: 'Motorcycling' },
+    { title: 'Photography' },
+    { title: 'Running' },
   ],
 }
