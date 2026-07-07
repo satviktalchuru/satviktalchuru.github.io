@@ -81,16 +81,16 @@ export const portfolioData: PortfolioData = {
       badge: { text: 'Current', color: 'green' },
     },
     {
-      logo: '/logos/ucsb.png',
-      company: 'UCSB Information Technology',
-      role: 'Cloud Solutions Architect Intern',
-      dates: 'Mar 2025 – Mar 2026',
-    },
-    {
       logo: '/logos/siemens.png',
       company: 'Siemens',
       role: 'AI Solutions Engineer Intern',
       dates: 'Jun 2025 – Dec 2025',
+    },
+    {
+      logo: '/logos/ucsb.png',
+      company: 'UCSB Information Technology',
+      role: 'Cloud Solutions Architect Intern',
+      dates: 'Mar 2025 – Mar 2026',
     },
     {
       logo: '/logos/ucsb.png',
@@ -106,6 +106,12 @@ export const portfolioData: PortfolioData = {
       title: 'brew',
       description: 'Coffee ranking iOS app with ELO-based taste profiles',
       href: 'https://github.com/satviktalchuru/brew',
+    },
+    {
+      logo: '👁️',
+      title: 'perceptionops',
+      description: 'Ship/no-ship release gating for AV perception models',
+      href: 'https://github.com/satviktalchuru/perceptionops',
     },
     {
       logo: '📜',
@@ -124,10 +130,5 @@ export const portfolioData: PortfolioData = {
   thoughts: [],
   thoughtsPlaceholder: 'More to come.',
 
-  misc: [
-    { title: 'Reading' },
-    { title: 'Motorcycling' },
-    { title: 'Photography' },
-    { title: 'Running' },
-  ],
+  misc: [{ title: '📚 🏍️ 📸 🏃' }],
 }
