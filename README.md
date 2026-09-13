@@ -1,21 +1,7 @@
 # satviktalchuru.github.io
 
-Personal portfolio — React 19, TypeScript, Tailwind CSS v4, Vite.
-Minimal single-column design (alexkehr.com style).
-
-## Editing content
-
-**Everything on the page lives in [`src/data/portfolio.ts`](src/data/portfolio.ts).**
-Edit that one file to change your name, tagline, experience rows, project rows,
-misc items, and social links — no component changes needed.
-
-- **Add a role/project**: copy an existing object in the `experience` /
-  `projects` array and edit the fields. Types are enforced, so `npm run build`
-  will tell you if a field is missing.
-- **Logos**: the `logo` field takes a single letter (companies) or an emoji
-  (projects), shown in the small rounded square.
-- **Badges**: add `badge: { text: 'Current', color: 'green' }` to any
-  experience or project row (`green`, `yellow`, or `gray`).
+Personal portfolio built with React 19, TypeScript, Tailwind CSS v4, and Vite.
+Minimal single column design.
 
 ## Development
 
@@ -31,20 +17,26 @@ npm run preview  # preview the production build
 Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site
 and publishes `dist/` to GitHub Pages.
 
-One-time setup: in the repo settings on GitHub, set
-**Settings → Pages → Source** to **GitHub Actions**.
+Before the first deploy, set **Settings → Pages → Source** to **GitHub Actions**
+in the repo settings on GitHub.
 
 ## Structure
 
 ```
+public/
+├── headshot.jpg
+├── logos/               company logos
+└── docs/                files linked from the page (poster, reports, models)
 src/
 ├── data/portfolio.ts    ← all editable content (single source of truth)
 ├── components/
-│   ├── Header.tsx       name / tagline / bio
+│   ├── Header.tsx       headshot / name / tagline
 │   ├── Section.tsx      section label wrapper
 │   ├── ExperienceRow.tsx
 │   ├── ProjectRow.tsx
+│   ├── ThoughtRow.tsx
 │   ├── MiscRow.tsx
+│   ├── InlineLinks.tsx  small links next to a title (e.g. Poster, Report)
 │   ├── Dock.tsx         floating social bar (LinkedIn/GitHub + "Let's chat")
 │   ├── LogoSquare.tsx / BadgePill.tsx / icons.tsx
 ├── App.tsx
