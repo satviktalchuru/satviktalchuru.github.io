@@ -10,12 +10,14 @@ import Dock from './components/Dock'
 export default function App() {
   const {
     name,
+    headshot,
     tagline,
-    bio,
     email,
     socials,
     experience,
     projects,
+    economicsProjects,
+    education,
     thoughts,
     thoughtsPlaceholder,
     misc,
@@ -24,7 +26,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <main className="mx-auto max-w-[540px] px-6 pt-12 pb-32 sm:pt-18">
-        <Header name={name} tagline={tagline} bio={bio} />
+        <Header name={name} tagline={tagline} headshot={headshot} />
 
         <Section label="Experience">
           {experience.map((item) => (
@@ -32,9 +34,21 @@ export default function App() {
           ))}
         </Section>
 
-        <Section label="Projects">
+        <Section label="Software Projects">
           {projects.map((item) => (
             <ProjectRow key={item.title} item={item} />
+          ))}
+        </Section>
+
+        <Section label="Economics Projects">
+          {economicsProjects.map((item) => (
+            <ProjectRow key={item.title} item={item} />
+          ))}
+        </Section>
+
+        <Section label="Education">
+          {education.map((item) => (
+            <ExperienceRow key={`${item.company}-${item.role}`} item={item} />
           ))}
         </Section>
 

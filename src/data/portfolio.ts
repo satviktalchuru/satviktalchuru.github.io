@@ -16,13 +16,21 @@ export interface Badge {
   color: 'green' | 'yellow' | 'gray'
 }
 
+export interface LinkItem {
+  label: string
+  /** External URL or a file in /public (e.g. '/docs/poster.pdf'). */
+  href: string
+}
+
 export interface ExperienceItem {
   /** Image path (e.g. '/logos/workiva.png'), single letter, or emoji. */
   logo: string
   company: string
   role: string
-  dates: string
+  dates?: string
   badge?: Badge
+  /** Small links shown next to the company name (e.g. a poster). */
+  links?: LinkItem[]
 }
 
 export interface ProjectItem {
@@ -30,7 +38,10 @@ export interface ProjectItem {
   logo: string
   title: string
   description: string
+  /** Makes the whole row a link. Use either `href` or `links`, not both. */
   href?: string
+  /** Small links shown next to the title (e.g. a report and its model). */
+  links?: LinkItem[]
   badge?: Badge
 }
 
@@ -43,17 +54,20 @@ export interface ThoughtItem {
 export interface MiscItem {
   title: string
   description?: string
-  links?: { label: string; href: string }[]
+  links?: LinkItem[]
 }
 
 export interface PortfolioData {
   name: string
+  /** Square photo in /public (e.g. '/headshot.jpg'), shown as a circle next to the name. */
+  headshot?: string
   tagline: string
-  bio: string
   email: string
   socials: Social[]
   experience: ExperienceItem[]
   projects: ProjectItem[]
+  economicsProjects: ProjectItem[]
+  education: ExperienceItem[]
   thoughts: ThoughtItem[]
   /** Shown under Thoughts when the list above is empty. */
   thoughtsPlaceholder: string
@@ -62,8 +76,8 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   name: 'Satvik Talchuru',
-  tagline: 'New grad. I build reliable systems.',
-  bio: 'Statistics & Data Science + Economics at UC Santa Barbara.',
+  headshot: '/headshot.jpg',
+  tagline: 'Software engineer with experience in pre-sales and cloud.',
   email: 'satvik.talchuru@gmail.com',
 
   socials: [
@@ -76,9 +90,15 @@ export const portfolioData: PortfolioData = {
     {
       logo: '/logos/workiva.png',
       company: 'Workiva',
-      role: 'Software Engineer Intern, Product SRE',
-      dates: 'Jun 2026 –',
+      role: 'Software Engineer Intern, Infrastructure',
+      dates: 'Sep 2026 – Dec 2026',
       badge: { text: 'Current', color: 'green' },
+    },
+    {
+      logo: '/logos/workiva.png',
+      company: 'Workiva',
+      role: 'Software Engineer Intern, Platform',
+      dates: 'Jun 2026 – Sep 2026',
     },
     {
       logo: '/logos/siemens.png',
@@ -91,16 +111,23 @@ export const portfolioData: PortfolioData = {
       company: 'UCSB Information Technology',
       role: 'Cloud Solutions Architect Intern',
       dates: 'Mar 2025 – Mar 2026',
+      links: [{ label: 'Poster', href: '/docs/ucsb-cloud-solutions-architect-poster.pdf' }],
     },
     {
       logo: '/logos/ucsb.png',
       company: 'UCSB Information Technology',
       role: 'ServiceNow Developer',
-      dates: 'Aug 2024 –',
+      dates: 'Aug 2024 – Dec 2026',
     },
   ],
 
   projects: [
+    {
+      logo: '🎯',
+      title: 'earnedcommitment',
+      description: 'iOS app that holds you to your goals',
+      href: 'https://github.com/satviktalchuru/earned-commitment',
+    },
     {
       logo: '☕',
       title: 'brew',
@@ -127,8 +154,35 @@ export const portfolioData: PortfolioData = {
     },
   ],
 
+  economicsProjects: [
+    {
+      logo: '📈',
+      title: 'Salesforce DCF valuation',
+      description: 'DCF and reverse DCF valuation of Salesforce (CRM)',
+      links: [
+        { label: 'Report', href: '/docs/salesforce-dcf-valuation.pdf' },
+        { label: 'Model', href: '/docs/salesforce-reverse-dcf.xlsx' },
+      ],
+    },
+    {
+      logo: '📝',
+      title: 'Building Without a Paycheck',
+      description: "Personnel economics study of UCSB's founder residency",
+      links: [{ label: 'Paper', href: '/docs/econ-187-building-without-a-paycheck.pdf' }],
+    },
+  ],
+
+  education: [
+    {
+      logo: '/logos/ucsb.png',
+      company: 'UC Santa Barbara',
+      role: 'Statistics & Data Science + Economics',
+      dates: 'Sep 2023 – Dec 2026',
+    },
+  ],
+
   thoughts: [],
   thoughtsPlaceholder: 'More to come.',
 
-  misc: [{ title: '📚 🏍️ 📸 🏃' }],
+  misc: [{ title: '📚 🏍️ 📸 🏃' }],
 }

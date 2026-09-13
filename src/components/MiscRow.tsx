@@ -1,5 +1,5 @@
 import type { MiscItem } from '../data/portfolio'
-import { ArrowUpRightIcon } from './icons'
+import InlineLinks from './InlineLinks'
 
 interface MiscRowProps {
   item: MiscItem
@@ -15,19 +15,8 @@ export default function MiscRow({ item }: MiscRowProps) {
         )}
       </div>
       {item.links && item.links.length > 0 && (
-        <div className="flex shrink-0 items-center gap-2.5">
-          {item.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-0.5 text-[13px] text-ink-faint transition-colors duration-150 hover:text-ink"
-            >
-              {link.label}
-              <ArrowUpRightIcon className="h-2.5 w-2.5" />
-            </a>
-          ))}
+        <div className="shrink-0">
+          <InlineLinks links={item.links} />
         </div>
       )}
     </div>
